@@ -7,6 +7,8 @@
 int main(void)
 {
 int num;
+srand(time(0));
+n = rand() - RAND_MAX / 2;
 printf("Input a number: ");
 scanf("%d", &num);
 
