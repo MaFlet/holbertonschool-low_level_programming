@@ -6,10 +6,10 @@
 int main(void)
 {
 char letter;
-for (lowercaseletter = 'a'; lowercaseletter <= 'z' ; lowercaseletter++)
-putchar(lowercaseletter);
-for (uppercaseletter = 'A'; uppercaseletter <= 'Z'; uppercaseletter++)
-putchar(uppercaseletter);
+for (letter = 'a'; letter <= 'z' ; letter++)
+putchar(letter);
+for (letter = 'A'; letter <= 'Z'; letter++)
+putchar(letter);
 putchar('\n');
 return (0);
 }
