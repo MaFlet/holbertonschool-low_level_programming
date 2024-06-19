@@ -5,10 +5,9 @@
 */
 int main(void)
 {
-char lowercaseletter;
+char letter;
 for (lowercaseletter = 'a'; lowercaseletter <= 'z' ; lowercaseletter++)
 putchar(lowercaseletter);
-char uppercaseletter;
 for (uppercaseletter = 'A'; uppercaseletter <= 'Z'; uppercaseletter++)
 putchar(uppercaseletter);
 putchar('\n');
