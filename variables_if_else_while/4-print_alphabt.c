@@ -5,10 +5,10 @@
 */
 int main(void)
 {
-char letter;
-for (letter = 'a'; letter <= 'z' ; letter++)
-putchar(letter);
-if (letter != 'e' && letter != 'q')
+char c;
+for (c = 'a'; c <= 'z' ; c++)
+if (c != 'e' && c != 'q')
+putchar(c);
 putchar('\n');
 return (0);
 }
