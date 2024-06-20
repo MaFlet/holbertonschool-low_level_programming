@@ -5,9 +5,11 @@
 */
 int main(void)
 {
-int num;
+char num;
 for (num = 0; num <= 15; num++)
-printf("%x", num);
-printf("\n");
+putchar("%x", num);
+for (letter = "a"; letter <= 'f'; letter++)
+putchar(letter);
+putchar"\n");
 return (0);
 }
