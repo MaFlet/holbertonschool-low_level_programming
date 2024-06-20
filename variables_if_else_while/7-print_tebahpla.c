@@ -6,10 +6,8 @@
 int main(void)
 {
 char letter;
-letter = 'z';
-for (letter >= 'a')
+for (letter >= 'a'; letter = 'z'; letter--)
 putchar(letter);
-letter--;
 putchar('\n');
 return (0);
 }
