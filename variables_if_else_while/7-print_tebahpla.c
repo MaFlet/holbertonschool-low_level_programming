@@ -5,11 +5,11 @@
 */
 int main(void)
 {
-char ch;
-ch = 'z';
-while (ch >= 'a')
-putchar(ch);
-ch--;
+char letter;
+letter = 'z';
+for (letter >= 'a')
+putchar(letter);
+letter--;
 putchar('\n');
 return (0);
 }
