@@ -4,10 +4,9 @@
 *Return: 0 (Success)
 */
 void print_alphabet(void);
-int i;
-char letter;
-for (i = 0; i < 10; i++)
 {
+char letter;
+for (letter = 'a'; letter <= 'z'; letter++)
 letter = 'a';
 while (letter <= 'z')
 {
