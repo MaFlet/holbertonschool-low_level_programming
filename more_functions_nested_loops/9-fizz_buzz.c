@@ -1,25 +1,23 @@
 #include <stdio.h>
 /**
-*print_square - prints a square
-*@#: use to print square
-*@size: size of square
-*if size is 0 or less print new line
+*main - prints 1 to 100
+*every multiples of 3 print Fizz
+*every multiples of 5 print Buzz
+*both 3 and 5 print FizzBuzz
 *Return: 0 (Success)
 */
 int main(void)
 {
-int i, c;
-if (size > 0)
+int i;
+for (i = 1; i <= 100; i++)
 {
-for (i = 0; i < size; i++)
-{
-for (c = 0; c < (size - 1); c++)
-_putchar('#');
-_putchar('#');
-_putchar('\n');
+if (i % 3 == 0)
+printf("Fizz");
+if (i % 5 == 0)
+printf("Buzz");
+if ((i % 3 != 0) && (i % 5 != 0))
+printf("FizzBuzz");
+printf("\n");
 }
-}
-else
-{
-_putchar('\n');
+return (0);
 }
