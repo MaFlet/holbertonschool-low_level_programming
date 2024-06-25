@@ -11,9 +11,9 @@ void print_square(int size)
 int i, c;
 if (size <= 1)
 _putchar('\n');
-for (i = 1; i < size; i++)
+for (i = 1; i < 10; i++)
 {
-for (c = 1; c < size; c++)
+for (c = 1; c < 8; c++)
 {
 _putchar(' ');
 }
