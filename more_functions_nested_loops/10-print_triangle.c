@@ -25,6 +25,7 @@ _putchar(' ');
 for (c = 1; c <= i; c++)
 {
 _putchar('#');
+_putchar('#');
 }
 _putchar('\n');
 }
