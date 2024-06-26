@@ -9,23 +9,18 @@
 void print_triangle(int size)
 {
 int i, c;
-int space;
 if (size > 0)
 {
 for (i = 1; i <= size; i++)
 {
-for (space = size * i; space >= 1; space++)
-{
+for ((c = size - i); c > 0; c--)
 _putchar(' ');
-}
-for (c = 1; c <= i; c++)
+for (c = 0; c < i; c++)
 _putchar('#');
-_putchar('#');
+if (i == size)
+continue;
 _putchar('\n');
 }
 }
-else
-{
 _putchar('\n');
-}
 }
