@@ -8,19 +8,19 @@ void puts2(char *str)
 {
 int longi = 0;
 int c = 0;
-char *j = str
-int o;
+char *j = str;
+int t;
 while (*j != '\0')
 {
 j++;
 longi++;
 }
 c = longi - 1;
-for (o = 0 ; o <= c ; o++)
+for (t = 0; t <= c ; t++)
 {
-if (o % 2 == 0)
+if (t % 2 == 0)
 {
-_putchar(str[o]);
+_putchar(str[t]);
 }
 }
 _putchar('\n');
