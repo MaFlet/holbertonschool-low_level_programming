@@ -8,6 +8,8 @@
 char *_strcat(char *dest, char *src)
 {
 int i, c;
+i = 0;
+c = 0;
 while (dest[i] != '\0')
 {
 i++;
