@@ -16,6 +16,8 @@ int size = 0;
 {
 if (!str)
 return (NULL);
+}
+{
 string = str;
 while (*string++)
 size++;
