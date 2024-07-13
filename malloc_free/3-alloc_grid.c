@@ -14,4 +14,18 @@ int **array, i, c;
 int len = width * height;
 if (len <= 0)
 return (NULL);
+{
+array = (int *)malloc(sizeof(int) * width);
+if (array[i] == NULL)
+{
+for (i--; i >= 0; i--)
+free(array[i]);
+free(array);
+return(NULL);
+}
+}
+for (i = 0; i < height; i++)
+for (c = 0; c < width; c++)
+array[i][c] = 0;
+return (array);
 }
