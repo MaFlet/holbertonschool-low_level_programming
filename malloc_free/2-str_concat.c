@@ -1,5 +1,6 @@
 #include "main.h"
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
 /**
 **str_concat - concatenates 2 strings
@@ -9,17 +10,26 @@
 */
 char *str_concat(char *s1, char *s2)
 {
-int i, c;
-i = 0;
-c = 0;
-while (s1[i] != '\0')
-i++;
-while (src[c] != '\0' && c < n)
-{
-dest[i] = src[c];
-i++;
+int i, c, j, a;
+char *string;
+if (s1 == 0)
+s1 = "";
+if (s2 == 0)
+s2 = "";
+for (i = 0; s1[i] != '\0'; i++)
+;
+for (c = 0; s2[c] != '\0'; c++)
+;
 c++;
+string = malloc(i * sizeof(*s1) + c * sizeof(*s2));
+if (string == 0)
+return (NULL);
+for (j = 0, a = 0; j < i + c; j++)
+{
+if (j < i)
+string[j] = s1[j];
+else
+string[j] = s2[a++];
 }
-dest[i] = '\0';
-return (dest);
+return (string);
 }
