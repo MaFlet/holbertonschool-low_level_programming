@@ -21,7 +21,7 @@ for (i = 0; s1[i] != '\0'; i++)
 for (c = 0; s2[c] != '\0'; c++)
 ;
 c++;
-string = malloc(i * sizeof(*s1) + c * sizeof(*s2));
+string = malloc((sizeof(*s1) * i) + (sizeof(*s2) * c));
 if (string == 0)
 return (NULL);
 for (j = 0, a = 0; j < i + c; j++)
