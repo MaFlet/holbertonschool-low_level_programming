@@ -9,26 +9,9 @@
 */
 void *malloc_checked(unsigned int b)
 {
-int* ptr;
-int i, c;
-ptr = (int*)malloc((sizeof(int) * n));
+int *ptr;
+ptr = malloc(sizeof(int *) * b);
 if (ptr == NULL)
-{
-printf("\n");
-exit (0);
-}
-else
-{
-printf("\n");
-for (c = 0; c < i; ++c)
-{
-ptr[i] = c + 1;
-}
-printf(" ");
-for (c = 0; c < i; ++i)
-{
-printf("%d", ptr[i]);
-}
-}
-return (0);
+exit(98);
+return (ptr);
 }
