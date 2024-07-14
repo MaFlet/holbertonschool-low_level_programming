@@ -8,13 +8,13 @@
 *@max: maximum value of integer
 *Return: NULL on failure and if min > max
 */
-int *array_range(int min, int max);
+int *array_range(int min, int max)
 {
 int *ptr;
-char array;
+int array;
 if (min > max)
 {
-retunr (NULL);
+return (NULL);
 }
 ptr = malloc(sizeof(int) * (max - min + 1));
 if (ptr == NULL)
