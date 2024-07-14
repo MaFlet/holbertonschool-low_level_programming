@@ -21,10 +21,10 @@ while (s1[i])
 i++;
 while (s2[j])
 j++;
-if (n < j)
-	a = i + j;
+if (n >= j)
+a = i + j;
 else
-	a = i + n;
+a = i + n;
 string = malloc(sizeof(char) * a + 1);
 if (string == NULL)
 return (NULL);
