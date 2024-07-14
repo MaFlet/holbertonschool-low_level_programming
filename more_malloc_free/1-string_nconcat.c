@@ -11,7 +11,7 @@
 */
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-int i = 0, c = 0, j = 0, a = 0;
+unsigned int i = 0, c = 0, j = 0, a = 0;
 char *string;
 if (s1 == NULL)
 s1 = "";
@@ -21,7 +21,7 @@ while (s1[i])
 i++;
 while (s2[j])
 j++;
-if (n >= j)
+if (n < j)
 	a = i + j;
 else
 	a = i + n;
