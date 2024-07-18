@@ -1,7 +1,6 @@
 #include "3-calc.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 /**
 *op_add - addition operator
 *@a: first integer
@@ -60,5 +59,5 @@ if (b == 0)
 printf("Error\n");
 exit(100);
 }
-result (a % b);
+return (a % b);
 }
