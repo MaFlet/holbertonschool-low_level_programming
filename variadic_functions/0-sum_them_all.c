@@ -7,7 +7,7 @@
 *@...: variable number of parameters to calculate the sum of
 *Return: 0 if n is 0 and sum of all parameters if otherwise
 */
-int sum_them_all(const unsigned int n, ...);
+int sum_them_all(const unsigned int n, ...)
 {
 va_list ap;
 unsigned int i, sum = 0;
