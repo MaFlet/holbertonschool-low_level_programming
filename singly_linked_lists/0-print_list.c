@@ -1,6 +1,7 @@
 #include "lists.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <stddef.h>
 /**
 *print_list - prints all the elements of list_t list
 *@h: header pointer to the first node
