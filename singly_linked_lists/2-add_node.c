@@ -16,6 +16,5 @@ struct node *newNode = malloc(sizeof(struct node));
 newNode->data = str;
 newNode->next = **head;
 **head = newNode;
-
-return (s);
+return (str);
 }
