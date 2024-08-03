@@ -2,6 +2,18 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stddef.h>
+#include <string.h>
+/**
+*strdup - duplicate a string
+*@s: string to be duplicated
+*Return: duplicated string
+*/
+char *strdup(const char *s)
+{
+char *str = strdup(s);
+printf("%s", str);
+return (0);
+}
 /**
 *add_node - adds a new node at the beginning of
 *list_t list
@@ -12,23 +24,15 @@
 list_t *add_node(list_t **head, const char *str)
 {
 list_t *new_node;
-int s;
-for (s = 0; duplicate_str[s] != '\0'; s++)
-	;
+unsigned int len = 0;
+while (str[len])
+len++;
 new_node = malloc(sizeof(list_t));
-if (new_node == NULL)
-{
-free(new_node);
+if (!new_node)
 return (NULL);
-}
 new_node->str = strdup(str);
-if (new_node->str == NULL)
-{
-free(new_node);
-return (NULL);
-}
-new_node->len = s;
-new_node->next = *head;
-*head = new_node;
+new_node->len = len;
+new_node->next = (*head);
+(*head) = new_node;
 return (*head);
 }
