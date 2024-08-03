@@ -12,7 +12,7 @@ char *strdup(const char *s)
 {
 char *str = strdup(s);
 printf("%s", str);
-return (0);
+return (str);
 }
 /**
 *add_node - adds a new node at the beginning of
@@ -28,11 +28,19 @@ unsigned int len = 0;
 while (str[len])
 len++;
 new_node = malloc(sizeof(list_t));
-if (!new_node)
+if (new_node == NULL)
+free(new_node);
 return (NULL);
+{
 new_node->str = strdup(str);
+if (new_node->str == NULL)
+{
+free(new_node);
+return (NULL);
 new_node->len = len;
-new_node->next = (*head);
-(*head) = new_node;
+new_node->next = *head;
+*head = new_node;
 return (*head);
+}
+}
 }
