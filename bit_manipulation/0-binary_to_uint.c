@@ -12,16 +12,22 @@ unsigned int binary_to_uint(const char *b)
 {
 unsigned int value;
 unsigned int index;
-for (value = 0, index = 0; b[index] != '\0'; index++)
+if (!b || !*b)
+return (0);
+value = 0;
+index = 0;
+while (b[index])
 {
-if (b[index] == '1')
-value = (value << 1) | 1;
-else if (b[index] == '0')
+if (b[index] > 49)
+return (0);
+else if (b[index] == 49)
+{
 value <<= 1;
-else if (b[index] != '0' && b[index] != '1')
-return (0);
-if (b == NULL)
-return (0);
+value += 1;
+}
+else
+value <<= 1;
+index++;
 }
 return (value);
 }
