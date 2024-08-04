@@ -20,6 +20,8 @@ else if (b[index] == '0')
 value <<= 1;
 else if (b[index] != '0' && b[index] != '1')
 return (0);
+if (b == NULL)
+return (0);
 }
 return (value);
 }
