@@ -1,7 +1,3 @@
-#include <stddef.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdlib.h>
 #ifndef _MAIN_H_
 #define _MAIN_H_
 int _putchar(char c);
