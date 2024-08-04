@@ -16,10 +16,10 @@ dlistint_t *temp1;
 dlistint_t *temp2;
 unsigned int count = 0;
 temp1 = *head;
-if (temp1 == NULL)
+if (temp1 !=  NULL)
 while (temp1->prev != NULL)
 temp1 = temp1->prev;
-while (temp1 == NULL)
+while (temp1 != NULL)
 {
 if (count == index)
 {
@@ -42,5 +42,5 @@ temp2 = temp1;
 temp1 = temp1->next;
 count++;
 }
-return (1);
+return (-1);
 }
