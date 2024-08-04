@@ -14,29 +14,17 @@
 */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
-int file_descriptor, length, writechars;
 char *buffer;
-if (filename == NULL || letters == 0)
-buffer = malloc(sizeof(char) * (letters));
-if (buffer == NULL)
+ssize_t fd;
+ssize_t w;
+ssize_t t;
+fd = open(filename, O_RDONLY);
+if (fd == -1)
 return (0);
-file_descriptor = open(filename, O_RDONLY);
-if (file_descriptor == -1)
-{
+buffer = malloc(sizeof(char) * letters);
+t = read(fd, buffer, letters);
+w = write(STDOUT_FILENO, buffer, t);
 free(buffer);
-return (0);
-}
-length = read(file_descriptor, buffer, letters);
-if (length == -1)
-{
-free(buffer);
-close(file_descriptor);
-return (0);
-}
-writechars = write(STDOUT_FILENO, buffer, length);
-free(buffer);
-close(file_descriptor);
-if (writechars != length)
-return (0);
-return (length);
+close(fd);
+return (w);
 }
