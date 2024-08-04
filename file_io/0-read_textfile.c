@@ -4,6 +4,7 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
+#include <stddef.h>
 /**
 *read_textfile - reads text file and prints it to the
 *POSIX standard output
