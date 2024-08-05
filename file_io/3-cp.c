@@ -5,7 +5,6 @@
 #include <sys/stat.h>
 #include <unistd.h>
 #include <fcntl.h>
-#include <stddef.h>
 #define BUFSIZE 1024
 static ssize_t read_file(char *file, char **buf, int fd);
 static void write_copy(char *file, int fd, char *buf, int len);
@@ -18,10 +17,10 @@ static void write_copy(char *file, int fd, char *buf, int len);
 */
 int main(int ac, char *av[])
 {
-int fd_0, fd_1, rd_length, error;
+int fd_0, fd_1, rd_len, err;
 char *buf, *file_from, *file_to;
 buf = NULL;
-rd_length = 1;
+rd_len = 1;
 if (ac != 3)
 {
 dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
@@ -31,24 +30,24 @@ file_from = av[1];
 file_to = av[2];
 fd_0 = open(file_from, O_RDONLY);
 fd_1 = open(file_to, O_CREAT | O_WRONLY | O_TRUNC, 0664);
-while (rd_length > 0)
+while (rd_len > 0)
 {
-rd_length = read_file(file_from, &buf, fd_0);
-if (!rd_length)
+rd_len = read_file(file_from, &buf, fd_0);
+if (!rd_len)
 break;
-write_copy(file_to, fd_1, buf, rd_length);
+write_copy(file_to, fd_1, buf, rd_len);
 }
 free(buf);
-error = close(fd_0);
-if (error < 0)
+err = close(fd_0);
+if (err < 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", fd_0);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_0);
 exit(100);
 }
-error = close(fd_1);
-if (error < 0)
+err = close(fd_1);
+if (err < 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't close file descriptor %d\n", fd_1);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_1);
 exit(100);
 }
 return (0);
@@ -62,36 +61,36 @@ return (0);
 */
 static ssize_t read_file(char *file, char **buf, int fd)
 {
-int rd_length;
+int rd_len;
 if (fd < 0)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file descriptor %s\n", file);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
 exit(98);
 }
 if (!(*buf))
 *buf = malloc(sizeof(char) * BUFSIZE);
 if (!(*buf))
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file descriptor %s\n", file);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
 exit(98);
 }
-rd_length = read(fd, *buf, BUFSIZE);
-if (rd_length < 0)
+rd_len = read(fd, *buf, BUFSIZE);
+if (rd_len < 0)
 {
 free(*buf);
-dprintf(STDERR_FILENO, "Error: Can't read from file descriptor %s\n", file);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", file);
 exit(98);
 }
-return (rd_length);
+return (rd_len);
 }
 /**
 *write_copy - write buffer into file
 *@file: destination for contents in buffer
 *@fd: file descriptor for @file
 *@buf: pointer to buffer
-*@length: current size of buffer
+*@len: current size of buffer
 */
-static void write_copy(char *file, int fd, char *buf, int length)
+static void write_copy(char *file, int fd, char *buf, int len)
 {
 if (fd < 0 || !buf)
 {
@@ -99,7 +98,7 @@ free(buf);
 dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
 exit(99);
 }
-if (write(fd, buf, length) < 0)
+if (write(fd, buf, len) < 0)
 {
 free(buf);
 dprintf(STDERR_FILENO, "Error: Can't write to %s\n", file);
