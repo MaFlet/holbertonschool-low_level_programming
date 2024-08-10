@@ -18,6 +18,7 @@ exit(98);
 if (file_to == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
+exit(99);
 }
 }
 /**
@@ -45,7 +46,7 @@ while (negative_chars == 1024)
 negative_chars = read(file_from, buf, 1024);
 if (negative_chars == -1)
 error_file(-1, 0, argv);
-nwr = write(file_to, buf, 1024);
+nwr = write(file_to, buf, negative_chars);
 if (nwr == -1)
 error_file(0, -1, argv);
 }
@@ -56,6 +57,7 @@ dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
 exit(100);
 }
 err_close = close(file_to);
+if (err_close == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
 exit(100);
