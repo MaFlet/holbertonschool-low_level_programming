@@ -1,53 +1,64 @@
 #include "main.h"
-#include <stdlib.h>
 #include <stdio.h>
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <unistd.h>
-#include <fcntl.h>
-#define BUFSIZE 1024
+#include <stdlib.h>
 /**
-*main - creating a function that copies the content of a
-*file to another file
-*@argc: number of parameters passed to the program
-*@argv: is an array of string arguments
-*Return: 0 (Success)
+*error_file - check for opening the file and hanle errors
+*@file_from: intial file to copy and check
+*@file_to: destination file to copy to
+*@argv: array of arguments
+*Return: void
 */
-int main(int argc, char *argv[])
+void error_file(int file_from, int file_to, char *argv[])
 {
-int file_from, file_to;
-int num1 = 1024, num2 = 0;
-char buf[1024];
-if (argc != 3)
-dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n"), exit(97);
-file_from = open(argv[1], O_RDONLY);
 if (file_from == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
 exit(98);
 }
-file_to = open(argv[2], O_WRONLY | O_CREAT | O_TRUNC, S_IRUSR | S_IWUSR
-| S_IRGRP | S_IWGRP | S_IROTH);
 if (file_to == -1)
 {
 dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]);
-close(file_from), exit(99);
 }
-while (num1 == 1024)
+}
+/**
+*main - copy content of a file from one to another
+*@argc: argument parameter to count
+*@argv: array of arguments
+*Return: 0 (Success)
+*/
+int main(int argc, char *argv[])
 {
-num1 = read(file_from, buf, 1024);
-if (num1 == -1)
+int file_from, file_to, err_close;
+ssize_t negative_chars, nwr;
+char buf[1024];
+if (argc != 3)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
-exit(98);
+dprintf(STDERR_FILENO, "%s\n", "Usage: cp file_from file_to");
+exit(97);
 }
-num2 = write(file_to, buf, num1);
-if (num2 < num1)
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", argv[2]), exit(99);
+file_from = open(argv[1], O_RDONLY);
+file_to = open(argv[2], O_CREAT | O_WRONLY | O_TRUNC | O_APPEND, 0664);
+error_file(file_from, file_to, argv);
+negative_chars = 1024;
+while (negative_chars == 1024)
+{
+negative_chars = read(file_from, buf, 1024);
+if (negative_chars == -1)
+error_file(-1, 0, argv);
+nwr = write(file_to, buf, 1024);
+if (nwr == -1)
+error_file(0, -1, argv);
 }
-if (close(file_from) == -1)
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from), exit(100);
-if (close(file_to) == -1)
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to), exit(100);
+err_close = close(file_from);
+if (err_close == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_from);
+exit(100);
+}
+err_close = close(file_to);
+{
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", file_to);
+exit(100);
+}
 return (0);
 }
